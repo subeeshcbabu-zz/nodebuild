@@ -5,6 +5,23 @@
 # 1 : NPM install failed
 # 2 : NPM test failed
 #
+
+#
+# Define utils here
+#
+#
+# Logger util 
+function log () {
+        if [ -z "$1" ]; then
+                echo ""
+        else
+                echo "$(date +"%m-%d-%Y-%T") $1"
+                if [ ! -z "$LOG_FILE" ]; then
+                        echo "$(date +"%m-%d-%Y-%T") $1" >> $LOG_FILE
+                fi
+        fi
+}
+
 log "	********************************************************************************************"
 log " "
 log "	Starting the nodejs build on container "
@@ -38,19 +55,3 @@ log "	"
 log "   ********************************************************************************************"
 exit 0
 
-#
-# Define utils here
-#
-
-#
-# Logger util 
-function log () {
-	if [ -z "$1" ]; then
-        	echo ""
-    	else
-        	echo "$(date +"%m-%d-%Y-%T") $1"
-        	if [ ! -z "$LOG_FILE" ]; then
-            		echo "$(date +"%m-%d-%Y-%T") $1" >> $LOG_FILE
-        	fi
-    	fi
-}
