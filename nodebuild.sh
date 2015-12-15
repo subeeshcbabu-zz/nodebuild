@@ -41,6 +41,13 @@ if [ $RC != 0 ]; then
 	exit 1
 fi
 
+log "   Executing npm run lint"
+npm run lint
+if [ $RC != 0 ]; then
+        log "   NPM run lint failed."
+        exit 2
+fi
+
 log "	Executing npm test"
 npm test
 if [ $RC != 0 ]; then
@@ -48,8 +55,8 @@ if [ $RC != 0 ]; then
 	exit 2
 fi
 
-log "	Executing npm run-script cover"
-npm run-script cover
+log "	Executing npm run cover"
+npm run cover
 
 log "	"
 log "   ********************************************************************************************"
